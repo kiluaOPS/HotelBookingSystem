@@ -24,9 +24,9 @@ namespace HotelBookingSystem.Services
             }
 
             var booking = await _context.Bookings
-                .FirstOrDefaultAsync(x => x.RoomId == bookingDto.RoomId &
-                (x.StartDate >= bookingDto.StartDate && x.StartDate <= bookingDto.EndDate) ||
-                (x.EndDate >= bookingDto.StartDate && x.EndDate <= bookingDto.EndDate));
+                .FirstOrDefaultAsync(x => x.RoomId == bookingDto.RoomId &&
+                ((x.StartDate >= bookingDto.StartDate && x.StartDate <= bookingDto.EndDate) ||
+                (x.EndDate >= bookingDto.StartDate && x.EndDate <= bookingDto.EndDate)));
             if (booking == null)
             {
                 booking = new Booking
@@ -101,6 +101,13 @@ namespace HotelBookingSystem.Services
                     }
                 }).FirstOrDefaultAsync();
             return response;
+        }
+
+        public async Task DeleteBookings()
+        {
+            var bookings = await _context.Bookings.ToListAsync();
+            _context.RemoveRange(bookings);
+            await _context.SaveChangesAsync();
         }
     }
 }

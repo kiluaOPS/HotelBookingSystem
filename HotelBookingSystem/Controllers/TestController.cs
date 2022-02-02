@@ -60,14 +60,14 @@ namespace HotelBookingSystem.Controllers
             foreach (var room in rooms.Payload)
             {
                 Random random = new Random();
-                int startDateShift = random.Next(0, 15);
-                int endDateShift = random.Next(15, 30);
+                int startDateShift = random.Next(0, 45);
+                int endDateShift = random.Next(startDateShift, startDateShift + 15);
                 await _bookingService.AddBookingAsync(new BookingDto
                 {
                     RoomId = room.RoomId,
                     Capacity = room.Capacity,
-                    EndDate = DateTime.Now.AddDays(startDateShift),
-                    StartDate = DateTime.Now.AddDays(endDateShift),
+                    StartDate = DateTime.Now.AddDays(startDateShift),
+                    EndDate = DateTime.Now.AddDays(endDateShift)
                 });
             }
         }

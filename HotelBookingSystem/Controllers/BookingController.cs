@@ -59,5 +59,12 @@ namespace HotelBookingSystem.Controllers
         {
             return Ok(await _bookingService.GetBookingDetailsAsync(bookingId));
         }
+
+        [HttpDelete]
+        public async Task<OkResult> Delete()
+        {
+            await _bookingService.DeleteBookings();
+            return Ok();
+        }
     }
 }

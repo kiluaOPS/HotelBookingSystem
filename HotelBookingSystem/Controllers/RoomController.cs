@@ -46,5 +46,12 @@ namespace HotelBookingSystem.Controllers
                 return BadRequest(response);
             }
         }
+
+        [HttpDelete]
+        public async Task<OkResult> Delete()
+        {
+            await _roomService.DeleteRooms();
+            return Ok();
+        }
     }
 }

@@ -48,5 +48,12 @@ namespace HotelBookingSystem.Services
             response.Payload = await _context.Rooms.ToListAsync();
             return response;
         }
+
+        public async Task DeleteRooms()
+        {
+            var rooms = await _context.Rooms.ToListAsync();
+            _context.RemoveRange(rooms);
+            await _context.SaveChangesAsync();
+        }
     }
 }

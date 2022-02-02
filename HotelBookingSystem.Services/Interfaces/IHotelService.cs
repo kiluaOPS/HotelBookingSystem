@@ -10,5 +10,6 @@ namespace HotelBookingSystem.Services
         Task<Response<Hotel>> GetHotelAsync(int hotelId);
         Task<Response<Hotel>> GetHotelByNameAsync(string hotelName);
         Task<Response<List<Hotel>>> GetAllHotelsAsync();
+        Task DeleteHotels();
     }
 }

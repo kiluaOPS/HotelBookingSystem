@@ -9,5 +9,6 @@ namespace HotelBookingSystem.Services
         Task<Response<Room>> AddRoomAsync(RoomDto roomDto);
         Task<Response<Room>> GetRoomAsync(int roomId);
         Task<Response<List<Room>>> GetAllRoomsAsync();
+        Task DeleteRooms();
     }
 }

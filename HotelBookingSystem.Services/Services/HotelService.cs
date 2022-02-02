@@ -57,5 +57,12 @@ namespace HotelBookingSystem.Services
             response.Payload = await _context.Hotels.FirstOrDefaultAsync(x => x.Name == hotelName);
             return response;
         }
+
+        public async Task DeleteHotels()
+        {
+            var hotels = await _context.Hotels.ToListAsync();
+            _context.RemoveRange(hotels);
+            await _context.SaveChangesAsync();
+        }
     }
 }

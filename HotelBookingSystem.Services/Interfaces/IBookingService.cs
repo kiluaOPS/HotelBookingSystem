@@ -11,5 +11,6 @@ namespace HotelBookingSystem.Services
         Task<Response<List<Booking>>> GetAllBookingsAsync();
         Task<Response<List<Room>>> GetAvailableRoomsAsync(int hotelId, int capacity, DateTime startDate, DateTime endDate);
         Task<Response<Booking>> GetBookingDetailsAsync(int bookingId);
+        Task DeleteBookings();
     }
 }
