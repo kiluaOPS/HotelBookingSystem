@@ -23,13 +23,12 @@ namespace HotelBookingSystem.Services
                 return response;
             }
 
-            var booking = await _context.Bookings
-                .FirstOrDefaultAsync(x => x.RoomId == bookingDto.RoomId &&
+            if (await _context.Bookings
+                .AnyAsync(x => x.RoomId == bookingDto.RoomId &&
                 ((x.StartDate >= bookingDto.StartDate && x.StartDate <= bookingDto.EndDate) ||
-                (x.EndDate >= bookingDto.StartDate && x.EndDate <= bookingDto.EndDate)));
-            if (booking == null)
+                (x.EndDate >= bookingDto.StartDate && x.EndDate <= bookingDto.EndDate))))
             {
-                booking = new Booking
+                var booking = new Booking
                 {
                     RoomId = bookingDto.RoomId,
                     EndDate = bookingDto.EndDate,

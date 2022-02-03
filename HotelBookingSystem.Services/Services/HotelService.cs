@@ -16,10 +16,9 @@ namespace HotelBookingSystem.Services
         public async Task<Response<Hotel>> AddHotelAsync(HotelDto hotelDto)
         {
             var response = new Response<Hotel>();
-            var hotel = await _context.Hotels.FirstOrDefaultAsync(x => x.Name == hotelDto.Name);
-            if (hotel == null)
+            if (await _context.Hotels.AnyAsync(x => x.Name == hotelDto.Name))
             {
-                hotel = new Hotel
+                var hotel = new Hotel
                 {
                     Name = hotelDto.Name
                 };
